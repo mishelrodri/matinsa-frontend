@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'styles/bootswatch-theme.css';
+
+:root{
+  //rgba(52, 89, 232, 1)
+  --color-primary: #FEFFFE;
+  --color-primary-hover: rgb(225,243,254);
+  --arrow: #f1f1f1;
+  --blue: rgba(52, 89, 232, 1);
+  --navbar: #FBFAFC;
+  --white: #ffffff;
+  --light: #F0F4F7;
+  --black: #2b2a2a;
+}
+
+body{
+  font-family: system-ui ;
+  font-size: 18px;
+}

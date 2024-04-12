@@ -1,0 +1,43 @@
+<section id="sidebar" [class]="status ? 'hide' : ''">
+  <ul class="side-menu top mt-5 p-1">
+    <!-- class="active" -->
+    <li (click)="addToggle()">
+      <a routerLink="/inicio" routerLinkActive="router-link-active">
+        <i class="bi bi-house-fill"></i>
+        <span class="text">Inicio</span>
+      </a>
+    </li>
+
+    <li (click)="addToggle()">
+      <a routerLinkActive="router-link-active">
+        <i class="bi bi bi-person-fill"></i>
+        <span class="text">Personal</span>
+      </a>
+    </li>
+
+    <li>
+      <button
+        class="button-collapse"
+        data-bs-toggle="collapse"
+        data-bs-target="#mantenimiento"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+        <span class="text">Mantenimiento</span>
+      </button>
+      <div class="collapse" id="mantenimiento">
+        <ul class="list-collapse">
+          <li (click)="addToggle()">
+            <a
+              routerLink="/consulta/jornadaMedica"
+              routerLinkActive="router-link-active"
+            >
+              <i class="bi bi-file-earmark-medical-fill"></i>
+              <span class="text-wrap">Paciente jornada medica</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</section>
