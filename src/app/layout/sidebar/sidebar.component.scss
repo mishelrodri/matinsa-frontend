@@ -23,26 +23,6 @@
   overflow-y: auto; /* Muestra la barra de desplazamiento cuando la clase show-scrollbar está presente */
 }
 
-#sidebar::-webkit-scrollbar {
-  width: 5px; /* Ancho del scrollbar */
-}
-
-#sidebar::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Color del fondo del scrollbar */
-}
-
-#sidebar::-webkit-scrollbar-thumb {
-  background-color: #888; /* Color del thumb del scrollbar */
-  border-radius: 6px; /* Borde del thumb */
-}
-
-#sidebar::-webkit-scrollbar-thumb:hover {
-  background-color: #807e7e; /* Color del thumb del scrollbar al pasar el mouse */
-}
-
-#sidebar::--webkit-scrollbar {
-  display: none;
-}
 #sidebar.hide {
   transform: translateX(0%);
   @media screen and (min-width: 850px) {

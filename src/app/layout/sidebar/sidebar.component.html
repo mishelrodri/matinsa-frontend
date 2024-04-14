@@ -7,14 +7,6 @@
         <span class="text">Inicio</span>
       </a>
     </li>
-
-    <li (click)="addToggle()">
-      <a routerLinkActive="router-link-active">
-        <i class="bi bi bi-person-fill"></i>
-        <span class="text">Personal</span>
-      </a>
-    </li>
-
     <li>
       <button
         class="button-collapse"
@@ -33,11 +25,17 @@
               routerLinkActive="router-link-active"
             >
               <i class="bi bi-file-earmark-medical-fill"></i>
-              <span class="text-wrap">Paciente jornada medica</span>
+              <span class="text-wrap">Unidad</span>
             </a>
           </li>
         </ul>
       </div>
+    </li>
+    <li (click)="addToggle()">
+      <a routerLinkActive="router-link-active">
+        <i class="bi bi-layout-text-window-reverse"></i>
+        <span class="text">Orden de producción</span>
+      </a>
     </li>
   </ul>
 </section>

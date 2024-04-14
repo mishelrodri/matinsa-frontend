@@ -1,19 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
-@import 'styles/bootswatch-theme.css';
-
-:root{
+@import "styles/bootswatch-theme.css";
+@import "styles/select-theme.css";
+:root {
   //rgba(52, 89, 232, 1)
-  --color-primary: #FEFFFE;
-  --color-primary-hover: rgb(225,243,254);
-  --arrow: #f1f1f1;
+  --color-primary: #fefffe;
+  --color-primary-hover: rgb(225, 243, 254);
+  --arrow: #2b2a2a;
   --blue: rgba(52, 89, 232, 1);
-  --navbar: #FBFAFC;
+  --navbar: #fbfafc;
   --white: #ffffff;
-  --light: #F0F4F7;
+  --light: #f0f4f7;
   --black: #2b2a2a;
 }
 
-body{
-  font-family: system-ui ;
-  font-size: 18px;
+body {
+  font-family: system-ui;
+  // font-size: 18px;
+}
+
+.header__page {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .breadcrumb {
+    border: none;
+    box-shadow: none;
+    display: flex;
+    align-self: center;
+    .breadcrumb-item {
+      font-weight: 500;
+      a {
+        color: #013a73;
+        text-decoration: none;
+      }
+    }
+
+    .breadcrumb-item.active {
+      color: #bf1131;
+    }
+  }
 }

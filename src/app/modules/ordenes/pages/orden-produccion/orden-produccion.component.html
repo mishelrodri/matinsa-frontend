@@ -1,0 +1,77 @@
+<div class="container-full">
+  <div class="header__page">
+    <div class="d-flex align-items-center">
+      <h1 class="fs-2">Orden de producción</h1>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center mt-4">
+    <div class="mb-2 d-flex align-items-center">
+      <label
+        for="table-filtering-search"
+        class="col-xs-3 col-sm-auto col-form-label me-1"
+        >Mostrar</label
+      >
+      <div class="col-xs-3 col-sm-auto" id="cantidad"></div>
+      <label
+        for="table-filtering-search"
+        class="col-xs-3 col-sm-auto col-form-label ms-1"
+        >Registros</label
+      >
+    </div>
+
+    <!-- !!! -->
+    <form>
+      <div id="buscar" class="d-flex align-items-center" id="buscar">
+        <label for="filter" class="col-form-label me-2">Buscar:</label>
+        <input
+          id="filter"
+          class="form-control"
+          type="text"
+          formControlName="filter"
+        />
+      </div>
+    </form>
+  </div>
+
+  <div class="table-responsive mt-2">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col"># Orden</th>
+          <th scope="col">Cliente</th>
+          <th scope="col">Producto</th>
+          <th scope="col">Fecha entrega</th>
+          <th scope="col">Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        @if (listOrdenes.content.length === 0) {
+        <tr>
+          <td colspan="5" class="text-center">
+            {{ isLoading ? "Cargando..." : "No se encontraron resultados" }}
+          </td>
+        </tr>
+        } @for (orden of listOrdenes.content | paginate: { itemsPerPage:
+        itemsPerPage, currentPage: p, totalItems: listOrdenes.totalElements };
+        track $index ;) {
+        <tr>
+          <td scope="col">{{ orden.idOrden }}</td>
+          <td scope="col">{{ orden.cliente.nombre }}</td>
+          <td scope="col">{{ orden.producto.nombreProducto }}</td>
+          <td scope="col">{{ orden.fechaEntrega }}</td>
+          <td scope="col">
+            <span class="badge bg-danger">{{ orden.estado }}</span>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  <pagination-controls
+    previousLabel="Anterior"
+    nextLabel="Siguiente"
+    (pageChange)="pageChange($event)"
+    class="d-flex justify-content-end"
+  ></pagination-controls>
+</div>
