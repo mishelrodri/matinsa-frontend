@@ -1,0 +1,61 @@
+<div class="bg-custom"></div>
+
+<div class="container-login bg-custom">
+  <div class="card card-width">
+    <div class="card-body">
+      <div class="card-image">
+        <img src="assets/images/cap.svg" alt="Matinsa logo" />
+      </div>
+
+      <h1 class="fw-bolder title">Inicio Sesión</h1>
+      <p class="text-center paragraph">
+        ¡Bienvenido al sistema de ordenes de producción de Matinsa S.A de S.V!
+      </p>
+      <form class="form" (ngSubmit)="onLogin()" [formGroup]="formularioLogin">
+        <div class="mb-3">
+          <input
+            formControlName="usuario"
+            id="usuario"
+            name="usuario"
+            type="text"
+            class="form-control no-outline"
+            placeholder="Nombre de usuario"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="input-group mb-3">
+          <input
+            formControlName="contrasenia"
+            id="contra"
+            name="contra"
+            [type]="toggleBtn ? 'text' : 'password'"
+            id="contrasenia"
+            class="form-control"
+            placeholder="Contraseña"
+          />
+          <button
+            type="button"
+            (click)="seePassword()"
+            class="input-group-text bg-transparent"
+            id="basic-addon1"
+          >
+            <i
+              [class]="toggleBtn ? 'bi bi-eye-slash-fill' : 'bi bi-eye-fill'"
+            ></i>
+          </button>
+        </div>
+
+        <div class="mb-3 d-flex justify-content-center">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="formularioLogin.invalid"
+          >
+            Acceder
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
