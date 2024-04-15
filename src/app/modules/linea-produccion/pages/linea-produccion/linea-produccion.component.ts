@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LineaProduccionService } from '@linea-produccion/services/linea-produccion.service';
-import { NgSelectModule } from '@ng-select/ng-select';
+import { NgSelectConfig, NgSelectModule } from '@ng-select/ng-select';
 import { IOrdenResponse } from '@ordenes/interfaces/IOrden.interface';
 import { AjustarTextoPipe } from '@shared/pipes/ajustar-texto.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -22,7 +22,8 @@ export class LineaProduccionComponent {
   finzalizarOrden!:FormGroup;
   @ViewChild('cerrar') cerrar!: ElementRef;
   @ViewChild('segundoCerrar') segundoCerrar!: ElementRef;
-  constructor( private lineaService: LineaProduccionService, private fb:FormBuilder) {
+  constructor(private config: NgSelectConfig, private lineaService: LineaProduccionService, private fb:FormBuilder) {
+    this.config.notFoundText = 'No se encontraron coincidencias';
   }
   ngOnInit(): void {
     this.getPages(0);

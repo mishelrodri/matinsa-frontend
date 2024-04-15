@@ -38,3 +38,14 @@ export interface IOrdenResponse {
   fechaFinalizacion: string | null;
   estado: string;
 }
+
+
+export interface IOrdenFiltro {
+  idOrden: number;
+    nombreCliente: string;
+    fechaEntrega: string;
+    fechaIngreso: string;
+    fechaFinalizacion: string;
+    estado: string;
+    nombreProducto: string;
+}

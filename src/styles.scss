@@ -18,26 +18,7 @@ body {
   // font-size: 18px;
 }
 
-.header__page {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 
-  .breadcrumb {
-    border: none;
-    box-shadow: none;
-    display: flex;
-    align-self: center;
-    .breadcrumb-item {
-      font-weight: 500;
-      a {
-        color: #013a73;
-        text-decoration: none;
-      }
-    }
-
-    .breadcrumb-item.active {
-      color: #bf1131;
-    }
-  }
+.tabla{
+  height: 430px;
 }

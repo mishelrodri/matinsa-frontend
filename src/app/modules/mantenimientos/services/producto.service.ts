@@ -1,9 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { environment } from '@environments/environment';
 import { ICategoria, IProductoResponse, IUnidad } from '@mantenimientos/interfaces/IProducto.interface';
 import { RequestResponse } from '@shared/interfaces/IResponse.interface';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -46,7 +47,7 @@ export class ProductoService {
   };
   constructor(private http: HttpClient) { }
 
-  getProductosByPage(page: number = 0, size: number = 10, filtro:number=1) {
+  getProductosByPage(page: number = 0, size: number = 10, filtro:string="1") {
     this.isLoading = true;
     return this.http
       .get<RequestResponse<IProductoResponse>>(`${this.url}/${filtro}`, {
@@ -80,5 +81,9 @@ export class ProductoService {
 
   eliminarProducto(id:number){
     return this.http.delete(`${this.url}/${id}`);
+  }
+
+  generarPdf(tipo:string): Observable<Blob> {
+    return this.http.get(this.url + `/generar-pdf/${tipo}`, { responseType: 'blob' });
   }
 }

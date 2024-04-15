@@ -5,18 +5,42 @@
     </div>
   </div>
 
-  <div class="d-flex mt-3">
+  <div class="d-flex justify-content-center justify-content-md-start mt-3">
     <button
       data-bs-toggle="modal"
       data-bs-target="#modalProducto"
-      class="btn btn-primary"
+      class="btn btn-info"
       (click)="abrirModal()"
     >
       Nuevo producto
     </button>
   </div>
+  <div
+    class="d-flex flex-wrap justify-content-center justify-content-md-end gap-3 mt-3"
+  >
+    <div>
+      <ng-select
+        [(ngModel)]="tipo"
+        [clearable]="false"
+        placeholder="Seleccione un tipo de producto"
+      >
+        <ng-option value="1">Producto terminado</ng-option>
+        <ng-option value="2">Materia prima</ng-option>
+      </ng-select>
+    </div>
+    <div>
+      <button (click)="filtrar()" class="btn btn-info">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+    <div>
+      <button (click)="generarReporte()" class="btn btn-danger">
+        Generar Reporte
+      </button>
+    </div>
+  </div>
 
-  <div class="table-responsive mt-5">
+  <div class="table-responsive mt-5 tabla">
     <table class="table table-hover">
       <thead>
         <tr class="text-center">

@@ -1,11 +1,12 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
-import { IOrden, IOrdenResponse } from '@ordenes/interfaces/IOrden.interface';
+import { IOrden, IOrdenFiltro, IOrdenResponse } from '@ordenes/interfaces/IOrden.interface';
 import { ICliente } from '@ordenes/interfaces/ICliente.interface';
 import { ICategoria } from '@ordenes/interfaces/ICategoria.interface';
 import { ICantidad, IProducto } from '@ordenes/interfaces/IProducto.interface';
 import { RequestResponse } from '@shared/interfaces/IResponse.interface';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class OrdenesService {
   listCategorias: ICategoria[] = [];
   listProductos: IProducto[] = [];
   listMateriaPrima: IProducto[] = [];
-  listOrdenes: RequestResponse<IOrdenResponse> = {
+  listOrdenes: RequestResponse<IOrdenFiltro> = {
     content: [],
     pageable: {
       sort: {
@@ -84,16 +85,37 @@ export class OrdenesService {
     return this.http.post<string>(`${this.orden}`,datos);
   }
 
-  getOrdenesByPage(page: number = 0, size: number = 10) {
+  getOrdenesByPage(page: number = 0, size: number = 10,estado?:string, fechaEsperada?: string) {
     this.isLoading = true;
+    let params = new HttpParams();
+      params = params.set('page', page.toString());
+      params = params.set('size', size.toString());
+
+    if (estado) {
+      params = params.set('estado', estado.toString());
+    }
+    if (fechaEsperada) {
+      params = params.set('fecha', fechaEsperada);
+    }
+
     return this.http
-      .get<RequestResponse<IOrdenResponse>>(`${this.orden}`, {
-        params: { page: page.toString(), size: size.toString() },
-      })
+      .get<RequestResponse<IOrdenFiltro>>(`${this.orden}/filtro`, {params})
       .subscribe((data) => {
         this.listOrdenes = data;
         this.isLoading = false;
       });
+  }
+
+  generarPdf(estado?: string, fechaEsperada?: string): Observable<Blob> {
+    let params = new HttpParams();
+    if (estado) {
+      params = params.set('estado', estado.toString());
+    }
+    if (fechaEsperada) {
+      params = params.set('fecha', fechaEsperada);
+    }
+
+    return this.http.get(this.orden + '/generar-pdf', { responseType: 'blob', params: params });
   }
 
 }

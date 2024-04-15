@@ -14,8 +14,6 @@ export const rutaGuard: CanActivateFn = async (route, state) => {
         // eslint-disable-next-line dot-notation
         const expectedAuthorities = route.data['expectedRol'];
         const roles = tokenService.getRoles();
-console.log(roles);
-console.log(expectedAuthorities);
 
         if (roles[0] === 'ADMINISTRADOR') {
           return true;
@@ -31,7 +29,6 @@ console.log(expectedAuthorities);
         const hasExpectedAuthorities = expectedAuthorities.some((authority: string) =>
           roles.includes(authority),
         );
-console.log(hasExpectedAuthorities);
 
         // ! Si NO tiene permisos de los que se esperan
         if (!hasExpectedAuthorities) {

@@ -2,14 +2,15 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IProductoResponse } from '@mantenimientos/interfaces/IProducto.interface';
 import { ProductoService } from '@mantenimientos/services/producto.service';
-import { NgSelectModule } from '@ng-select/ng-select';
+import { NgSelectConfig, NgSelectModule } from '@ng-select/ng-select';
+import { AjustarTextoPipe } from '@shared/pipes/ajustar-texto.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-producto',
   standalone: true,
-  imports: [NgxPaginationModule,NgSelectModule,ReactiveFormsModule,FormsModule],
+  imports: [NgxPaginationModule,NgSelectModule,ReactiveFormsModule,FormsModule,AjustarTextoPipe],
   templateUrl: './producto.component.html',
   styleUrl: './producto.component.scss'
 })
@@ -19,8 +20,10 @@ export class ProductoComponent {
   formulario!:FormGroup;
   isEditar:boolean=false;
   @ViewChild('cerrar') cerrar!: ElementRef;
+  tipo:string='1';
 
-  constructor( private productoService: ProductoService, private fb:FormBuilder) {
+  constructor(private config: NgSelectConfig, private productoService: ProductoService, private fb:FormBuilder) {
+    this.config.notFoundText = 'No se encontraron coincidencias';
   }
 
   ngOnInit(): void {
@@ -61,7 +64,7 @@ export class ProductoComponent {
 
 
   getPages(page: number) {
-    this.productoService.getProductosByPage(page, this.itemsPerPage);
+    this.productoService.getProductosByPage(page, this.itemsPerPage,this.tipo);
   }
 
   pageChange(newPage: number) {
@@ -179,6 +182,18 @@ export class ProductoComponent {
         });
       }
     });
+  }
+
+  generarReporte(){
+    this.productoService.generarPdf(this.tipo).subscribe((blob: Blob) => {
+      const blobUrl = URL.createObjectURL(blob);
+      window.open(blobUrl, '_blank'); // Abre el PDF en una nueva pestaña
+    });
+  }
+
+  filtrar(){
+    this.p=1;
+    this.productoService.getProductosByPage(0, this.itemsPerPage,this.tipo);
   }
 
 }
