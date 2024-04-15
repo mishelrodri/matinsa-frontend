@@ -8,13 +8,13 @@ const routes: Routes = [
   {
     path:'',
     canActivate:[rutaGuard],
-    data: { expectedRol: ['BODEGA'] },
+    data: { expectedRol: ['PRODUCCION','ADMINISTRADOR'] },
     component:OrdenProduccionComponent
   },
   {
     path:'nuevo',
-    // canActivate:[rutaGuard],
-    data: { expectedRol: ['BODEGA'] },
+    canActivate:[rutaGuard],
+    data: { expectedRol: ['PRODUCCION','ADMINISTRADOR'] },
     component:NuevaOrdenComponent
   }
 ];

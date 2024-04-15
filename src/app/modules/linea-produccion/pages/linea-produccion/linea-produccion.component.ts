@@ -120,7 +120,7 @@ export class LineaProduccionComponent {
       error:(resp)=>{
         Swal.fire({
           title: "Error",
-          text: "No se pudo finalizar la orden. Por favor, póngase en contacto con el administrador para obtener asistencia.",
+          text: "La fecha de finalización no puede ser menor a la de ingreso",
           icon: "warning"
         });
       }

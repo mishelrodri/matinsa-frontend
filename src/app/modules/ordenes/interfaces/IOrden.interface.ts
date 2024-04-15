@@ -27,7 +27,7 @@ export interface IOrdenResponse {
       nombre: string;
     };
     categoriaProducto: {
-      idTipoProducto: number;
+      idCategoria: number;
       nombre: string;
     };
     cantidad: number;

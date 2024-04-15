@@ -1,27 +1,26 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IUnidad } from '@mantenimientos/interfaces/IProducto.interface';
-import { UnidadService } from '@mantenimientos/services/unidad.service';
+import { ClienteService } from '@mantenimientos/services/cliente.service';
 import { NgSelectConfig, NgSelectModule } from '@ng-select/ng-select';
+import { ICliente } from '@ordenes/interfaces/ICliente.interface';
 import { AjustarTextoPipe } from '@shared/pipes/ajustar-texto.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import Swal from 'sweetalert2';
-
 @Component({
-  selector: 'app-unidad',
+  selector: 'app-cliente',
   standalone: true,
   imports: [NgxPaginationModule,NgSelectModule,ReactiveFormsModule,FormsModule,AjustarTextoPipe],
-  templateUrl: './unidad.component.html',
-  styleUrl: './unidad.component.scss'
+  templateUrl: './cliente.component.html',
+  styleUrl: './cliente.component.scss'
 })
-export class UnidadComponent {
+export class ClienteComponent {
   p = 1;
   itemsPerPage = 5;
   formulario!:FormGroup;
   isEditar:boolean=false;
   @ViewChild('cerrar') cerrar!: ElementRef;
 
-  constructor(private config: NgSelectConfig, private unidadService: UnidadService, private fb:FormBuilder) {
+  constructor(private config: NgSelectConfig, private clienteService: ClienteService, private fb:FormBuilder) {
     this.config.notFoundText = 'No se encontraron coincidencias';
   }
   ngOnInit(): void {
@@ -31,22 +30,23 @@ export class UnidadComponent {
 
   private iniciarFormulario(){
     return this.fb.group({
-      idUnidad:[''],
+      idCliente:[''],
       nombre:['',[Validators.required]],
+      direccion:['',[Validators.required]],
     })
   }
 
-  get listUnidades(){
-    return this.unidadService.listUnidades;
+  get listClientes(){
+    return this.clienteService.listClientes;
   }
 
     get isLoading(){
-    return this.unidadService.isLoading;
+    return this.clienteService.isLoading;
   }
 
 
   getPages(page: number) {
-    this.unidadService.getUnidadesByPage(page, this.itemsPerPage);
+    this.clienteService.getClientesByPage(page, this.itemsPerPage);
   }
 
   pageChange(newPage: number) {
@@ -59,17 +59,17 @@ export class UnidadComponent {
     this.formulario.reset();
   }
 
-  guardarProducto(){
+  guardarCliente(){
     console.log(this.formulario.value);
     if(this.formulario.valid){
         if(this.isEditar){
-          this.unidadService.editarUnidades(this.formulario.get('idUnidad')?.value,this.formulario.value).subscribe({
+          this.clienteService.editarClientes(this.formulario.get('idCliente')?.value,this.formulario.value).subscribe({
             next:()=>{
 
               this.formulario.reset();
               Swal.fire({
                 title: "Éxito",
-                text: "La unidad se ha editado exitosamente",
+                text: "El cliente se ha editado exitosamente",
                 icon: "success"
               });
               this.cerrar.nativeElement.click();
@@ -88,12 +88,12 @@ export class UnidadComponent {
             }
           });
         }else{
-          this.unidadService.crearUnidades(this.formulario.value).subscribe({
+          this.clienteService.crearClientes(this.formulario.value).subscribe({
             next:()=>{
               this.formulario.reset();
               Swal.fire({
                 title: "Éxito",
-                text: "La unidad se ha registrado exitosamente",
+                text: "El cliente se ha registrado exitosamente",
                 icon: "success"
               });
               this.cerrar.nativeElement.click();
@@ -111,14 +111,15 @@ export class UnidadComponent {
     }
   }
 
-  editar(unidad:IUnidad){
+  editar(cliente:ICliente){
     this.formulario.reset();
     this.isEditar=true;
 
 
     this.formulario.setValue({
-    idUnidad: unidad.idUnidad,
-    nombre: unidad.nombre
+    idCliente: cliente.idCliente,
+    nombre: cliente.nombre,
+    direccion: cliente.direccion
 
     });
   }
@@ -135,12 +136,12 @@ export class UnidadComponent {
       confirmButtonText: "Aceptar"
     }).then((result) => {
       if (result.isConfirmed) {
-        this.unidadService.eliminarUnidades(id).subscribe({
+        this.clienteService.eliminarClientes(id).subscribe({
           next:()=>{
             this.formulario.reset();
             Swal.fire({
               title: "Éxito",
-              text: "La unidad se ha eliminado exitosamente",
+              text: "El cliente se ha eliminado exitosamente",
               icon: "success"
             });
             this.cerrar.nativeElement.click();
@@ -149,7 +150,7 @@ export class UnidadComponent {
           error:(resp)=>{
             Swal.fire({
               title: "Error",
-              text: "La unidad esta asociada a productos y no puede ser eliminada.",
+              text: "El cliente esta asociado a ordenes de producción y no puede ser eliminado.",
               icon: "warning"
             });
           }

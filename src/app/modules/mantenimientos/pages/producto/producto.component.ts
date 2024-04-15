@@ -42,7 +42,7 @@ export class ProductoComponent {
       descripcion:['',[Validators.required]],
       tipoProducto:['',[Validators.required]],
       unidad:[null,[Validators.required]],
-      categoriaProducto:[null,[Validators.required]],
+      categoriaProducto:[null],
       cantidad:['',[Validators.required]]
     })
   }
@@ -143,7 +143,7 @@ export class ProductoComponent {
     descripcion: producto.descripcion,
     tipoProducto: producto.idTipoProducto.toString(),
     unidad: producto.idUnidad.toString(),
-    categoriaProducto: producto.categoriaProducto.toString(),
+    categoriaProducto:  producto.idProducto ===1 ? producto.categoriaProducto.toString() : '',
     cantidad: producto.cantidad,
 
     });

@@ -1,27 +1,39 @@
-# MatinsaFrontend
+# Matinsa S.A de S.V - Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.2.
+## Contenido
 
-## Development server
+Frontend de Matinsa S.A de S.V para la interfaz de usuario.
+El proyecto está realizado en:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Angular 17+
+- TypeScript
 
-## Code scaffolding
+## Programas necesarios
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Para poder utilizar el proyecto en localhost es necesario clonarlo y tener algunos programas necesarios:
 
-## Build
+- **Node.js y npm**: para descargar Node.js y npm, visita [la página de descargas de Node.js](https://nodejs.org/es/download/).
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **IDE de desarrollo**: IDE recomendado [Visual Studio Code](https://code.visualstudio.com/download/).
 
-## Running unit tests
+## 🔍 Cómo Clonar
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Comando para clonar:
 
-## Running end-to-end tests
+```bash
+git clone https://github.com/tu-usuario/matinsa-frontend.git
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## 🚀 Ejecución en localhost:
 
-## Further help
+### Configurar las credenciales en el archivo `environment.ts`:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Asegúrate de tener la URL del backend configurada correctamente en el archivo `environment.ts` dentro de la carpeta `src/environments/`.
+
+### Instalar dependencias y ejecutar la aplicación:
+
+1. Abre una terminal en la raíz del proyecto.
+2. Ejecuta `npm install` para instalar todas las dependencias.
+3. Ejecuta `ng serve -o` para iniciar la aplicación en modo de desarrollo y abrir automáticamente el navegador.
+
+_Nota_: Tener el backend ejecutándose en localhost antes de probar el frontend para evitar errores de conexión.

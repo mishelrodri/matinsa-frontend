@@ -1,7 +1,7 @@
 <div class="container-full">
   <div class="header__page">
     <div class="d-flex align-items-center">
-      <h1 class="fs-2">Categorías</h1>
+      <h1 class="fs-2">Clientes</h1>
     </div>
   </div>
 
@@ -12,7 +12,7 @@
       class="btn btn-info"
       (click)="abrirModal()"
     >
-      Nueva Categoría
+      Nuevo Cliente
     </button>
   </div>
 
@@ -22,33 +22,35 @@
         <tr class="text-center">
           <th scope="col">ID</th>
           <th scope="col">Nombre</th>
-          <th scope="col">Acciones</th>
+          <th scope="col">Dirección</th>
+          <th scope="col">Accciones</th>
         </tr>
       </thead>
       <tbody>
-        @if (listCategorias.content.length === 0) {
+        @if (listClientes.content.length === 0) {
         <tr>
           <td colspan="7" class="text-center">
             {{ isLoading ? "Cargando..." : "No se encontraron resultados" }}
           </td>
         </tr>
-        } @for (producto of listCategorias.content | paginate: { itemsPerPage:
-        itemsPerPage, currentPage: p, totalItems: listCategorias.totalElements
-        }; track $index ;) {
+        } @for (cliente of listClientes.content | paginate: { itemsPerPage:
+        itemsPerPage, currentPage: p, totalItems: listClientes.totalElements };
+        track $index ;) {
         <tr class="text-center">
-          <td scope="col">{{ producto.idCategoria }}</td>
-          <td scope="col">{{ producto.nombre }}</td>
+          <td scope="col">{{ cliente.idCliente }}</td>
+          <td scope="col">{{ cliente.nombre }}</td>
+          <td scope="col">{{ cliente.direccion }}</td>
 
           <td scope="col">
             <button
-              (click)="eliminar(producto.idCategoria)"
+              (click)="eliminar(cliente.idCliente)"
               class="btn-transparent text-danger"
             >
               <i class="bi bi-trash fs-4"></i>
             </button>
 
             <button
-              (click)="editar(producto)"
+              (click)="editar(cliente)"
               data-bs-toggle="modal"
               data-bs-target="#modalCategoria"
               class="btn-transparent text-success"
@@ -81,7 +83,7 @@
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="modalCategoria">Nueva Categoría</h1>
+        <h1 class="modal-title fs-5" id="modalCategoria">Nuevo Cliente</h1>
         <button
           type="button"
           class="btn-close"
@@ -91,7 +93,7 @@
       </div>
       <div class="modal-body">
         <form
-          (ngSubmit)="guardarProducto()"
+          (ngSubmit)="guardarCliente()"
           [formGroup]="formulario"
           id="categoriaForm"
           name="categoriaForm"
@@ -103,6 +105,17 @@
               type="text"
               min="1"
               placeholder="Nombre categoría"
+              class="form-control"
+              autocomplete="off"
+            />
+          </div>
+          <div bis_skin_checked="1" class="mb-3">
+            <label class="form-label">Dirección</label>
+            <input
+              formControlName="direccion"
+              type="textarea"
+              min="1"
+              placeholder="Dirección"
               class="form-control"
               autocomplete="off"
             />

@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import { SkeletonComponent } from './layout/skeleton/skeleton.component';
 import { OrdenesModule } from './modules/ordenes/ordenes.module';
+import { rutaGuard } from '@security/guards/ruta.guard';
+import { NotFoundComponent } from '@shared/components/not-found/not-found.component';
 
 export const routes: Routes = [
   {
@@ -17,7 +19,9 @@ export const routes: Routes = [
       },
       {
         path: 'ordenes',
-        loadChildren: () => import('@ordenes/ordenes.module').then(m => m.OrdenesModule)
+        loadChildren: () => import('@ordenes/ordenes.module').then(m => m.OrdenesModule),
+        canActivate:[rutaGuard],
+        data: { expectedRol: ['PRODUCCION','ADMINISTRADOR'] },
       },
       {
         path: 'linea-produccion',
@@ -28,5 +32,9 @@ export const routes: Routes = [
         loadChildren: () => import('@mantenimientos/mantenimientos.module').then(m => m.MantenimientosModule)
       },
     ]
-  }
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
+  },
 ];

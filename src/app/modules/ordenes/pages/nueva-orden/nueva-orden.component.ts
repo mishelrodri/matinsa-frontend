@@ -1,4 +1,4 @@
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgSelectConfig, NgSelectModule } from '@ng-select/ng-select';
 import { IDetalleOrden } from '@ordenes/interfaces/IDetalleOrden.interface';
@@ -23,6 +23,7 @@ export class NuevaOrdenComponent {
   detalleEditar!: IDetalleOrden | null;
   cantidadDto!:ICantidad;
   ordenProduccion!:IOrden;
+  @ViewChild('cerrar') cerrar!: ElementRef;
 
 
   constructor(private config: NgSelectConfig, private fb:FormBuilder, private ordenService: OrdenesService) {
@@ -133,6 +134,7 @@ export class NuevaOrdenComponent {
         next:()=>{
           this.detallesOrden.add(this.formularioDetalle.value);
           this.detallesOrdenArray = Array.from(this.detallesOrden);
+          this.cerrar.nativeElement.click();
         },
         error:(resp)=>{
           Swal.fire({

@@ -7,6 +7,7 @@
         <span class="text">Inicio</span>
       </a>
     </li>
+    @if (verificarRol('ADMINISTRADOR') || verificarRol('BODEGA')) {
     <li>
       <button
         class="button-collapse"
@@ -19,38 +20,66 @@
       </button>
       <div class="collapse" id="mantenimiento">
         <ul class="list-collapse">
+          @if (verificarRol('ADMINISTRADOR') || verificarRol('BODEGA')) {
           <li (click)="addToggle()">
             <a
-              routerLink="/consulta/jornadaMedica"
+              routerLink="/mantenimientos/inventario"
               routerLinkActive="router-link-active"
             >
               <i class="bi bi-file-earmark-medical-fill"></i>
-              <span class="text-wrap">Unidad</span>
+              <span class="text-wrap">Inventario</span>
             </a>
           </li>
+          } @if (verificarRol('ADMINISTRADOR')) {
+          <li (click)="addToggle()">
+            <a
+              routerLink="/mantenimientos/cliente"
+              routerLinkActive="router-link-active"
+            >
+              <i class="bi bi-file-earmark-medical-fill"></i>
+              <span class="text-wrap">Clientes</span>
+            </a>
+          </li>
+          <li (click)="addToggle()">
+            <a
+              routerLink="/mantenimientos/categoria"
+              routerLinkActive="router-link-active"
+            >
+              <i class="bi bi-file-earmark-medical-fill"></i>
+              <span class="text-wrap">Categorías de producto</span>
+            </a>
+          </li>
+          <li (click)="addToggle()">
+            <a
+              routerLink="/mantenimientos/unidad"
+              routerLinkActive="router-link-active"
+            >
+              <i class="bi bi-file-earmark-medical-fill"></i>
+              <span class="text-wrap">Unidades</span>
+            </a>
+          </li>
+          }
         </ul>
       </div>
     </li>
+    } @if (verificarRol('ADMINISTRADOR') || verificarRol('PRODUCCION')) {
     <li (click)="addToggle()">
-      <a routerLinkActive="router-link-active">
-        <i class="bi bi-layout-text-window-reverse"></i>
-        <span
-          [routerLink]="['/ordenes']"
-          routerLinkActive="router-link-active"
-          class="text"
-          >Ordenes de producción</span
-        >
+      <a routerLink="/ordenes" routerLinkActive="router-link-active">
+        <i class="bi bi-box"></i>
+        <span class="text">Ordenes de producción</span>
       </a>
     </li>
     <li (click)="addToggle()">
-      <a routerLinkActive="router-link-active">
+      <a routerLink="/linea-produccion" routerLinkActive="router-link-active">
         <i class="bi bi-layout-text-window-reverse"></i>
-        <span
-          [routerLink]="['/linea-produccion']"
-          routerLinkActive="router-link-active"
-          class="text"
-          >Líneas de producción</span
-        >
+        <span class="text">Líneas de producción</span>
+      </a>
+    </li>
+    }
+    <li>
+      <a (click)="cerrarSesion()">
+        <i class="bi bi-box-arrow-right"></i>
+        <span class="text">Cerrar sesión</span>
       </a>
     </li>
   </ul>

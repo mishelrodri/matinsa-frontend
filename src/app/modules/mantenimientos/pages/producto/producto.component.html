@@ -181,6 +181,7 @@
             </ng-select>
           </div>
 
+          @if (formulario.get('tipoProducto')?.value==='1') {
           <div>
             <label class="form-label">Categoría producto</label>
             <ng-select
@@ -196,7 +197,7 @@
               }
             </ng-select>
           </div>
-          }
+          } }
 
           <div bis_skin_checked="1" class="mb-3">
             <label class="form-label">Cantidad</label>

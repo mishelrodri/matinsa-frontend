@@ -1,4 +1,4 @@
 export interface ICategoria{
-  idTipoProducto: number;
+  idCategoria: number;
   nombre: string;
 }

@@ -10,7 +10,7 @@ export interface IProducto {
     nombre: string;
   };
   categoriaProducto: {
-    idTipoProducto: number;
+    idCategoria: number;
     nombre: string;
   };
   cantidad: number;

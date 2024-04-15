@@ -11,7 +11,7 @@ interface Unidad {
 }
 
 interface CategoriaProducto {
-  idTipoProducto: number;
+  idCategoria: number;
   nombre: string;
 }
 
