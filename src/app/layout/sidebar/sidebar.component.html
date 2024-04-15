@@ -34,7 +34,23 @@
     <li (click)="addToggle()">
       <a routerLinkActive="router-link-active">
         <i class="bi bi-layout-text-window-reverse"></i>
-        <span class="text">Orden de producción</span>
+        <span
+          [routerLink]="['/ordenes']"
+          routerLinkActive="router-link-active"
+          class="text"
+          >Ordenes de producción</span
+        >
+      </a>
+    </li>
+    <li (click)="addToggle()">
+      <a routerLinkActive="router-link-active">
+        <i class="bi bi-layout-text-window-reverse"></i>
+        <span
+          [routerLink]="['/linea-produccion']"
+          routerLinkActive="router-link-active"
+          class="text"
+          >Líneas de producción</span
+        >
       </a>
     </li>
   </ul>

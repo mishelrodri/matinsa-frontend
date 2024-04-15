@@ -28,7 +28,9 @@
        "@ordenes/*": ["./src/app/modules/ordenes/*"],
        "@auth/*": ["./src/app/modules/auth/*"],
        "@security/*": ["./src/app/security/*"],
-       "@environments/*": ["./src/environments/*"]
+       "@environments/*": ["./src/environments/*"],
+       "@shared/*": ["./src/app/shared/*"],
+       "@linea-produccion/*": ["./src/app/modules/linea-produccion/*"]
     }
   },
   "angularCompilerOptions": {

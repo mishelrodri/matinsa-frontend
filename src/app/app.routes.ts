@@ -19,6 +19,10 @@ export const routes: Routes = [
         path: 'ordenes',
         loadChildren: () => import('@ordenes/ordenes.module').then(m => m.OrdenesModule)
       },
+      {
+        path: 'linea-produccion',
+        loadChildren: () => import('@linea-produccion/linea-produccion.module').then(m => m.LineaProduccionModule)
+      },
     ]
   }
 ];

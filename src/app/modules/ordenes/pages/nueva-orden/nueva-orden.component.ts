@@ -92,7 +92,6 @@ export class NuevaOrdenComponent {
 
   abrirModalDetalle() {
     this.formularioDetalle.reset();
-    document.querySelector(".modal")?.classList.add("show");
   }
 
   obtenerNombreMateriaPrima(){

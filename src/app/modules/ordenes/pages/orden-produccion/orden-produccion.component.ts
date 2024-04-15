@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { OrdenesService } from '@ordenes/services/ordenes.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-orden-produccion',
   standalone: true,
-  imports: [NgxPaginationModule],
+  imports: [NgxPaginationModule,RouterModule],
   templateUrl: './orden-produccion.component.html',
   styleUrl: './orden-produccion.component.scss'
 })
