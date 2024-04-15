@@ -1,5 +1,8 @@
 # Matinsa S.A de S.V - Frontend
 
+![inicio.png](/src/assets/images/inicio.png)
+![dasboard.png](/src/assets/images/dashboard.png)
+
 ## Contenido
 
 Frontend de Matinsa S.A de S.V para la interfaz de usuario.
@@ -10,9 +13,9 @@ El proyecto está realizado en:
 
 ## Programas necesarios
 
-Para poder utilizar el proyecto en localhost es necesario clonarlo y tener algunos programas necesarios:
+Para poder utilizar el proyecto en localhost es necesario clonarlo y tener algunos programas:
 
-- **Node.js y npm**: para descargar Node.js y npm, visita [la página de descargas de Node.js](https://nodejs.org/es/download/).
+- **Node.js y npm**: para descargar Node.js y npm, [página de descargas de Node.js](https://nodejs.org/es/download/).
 
 - **IDE de desarrollo**: IDE recomendado [Visual Studio Code](https://code.visualstudio.com/download/).
 
@@ -21,7 +24,7 @@ Para poder utilizar el proyecto en localhost es necesario clonarlo y tener algun
 Comando para clonar:
 
 ```bash
-git clone https://github.com/tu-usuario/matinsa-frontend.git
+git clone https://github.com/mishelrodri/matinsa-frontend.git
 ```
 
 ## 🚀 Ejecución en localhost:
