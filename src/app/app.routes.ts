@@ -23,6 +23,10 @@ export const routes: Routes = [
         path: 'linea-produccion',
         loadChildren: () => import('@linea-produccion/linea-produccion.module').then(m => m.LineaProduccionModule)
       },
+      {
+        path: 'mantenimientos',
+        loadChildren: () => import('@mantenimientos/mantenimientos.module').then(m => m.MantenimientosModule)
+      },
     ]
   }
 ];

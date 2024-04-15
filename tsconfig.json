@@ -30,7 +30,8 @@
        "@security/*": ["./src/app/security/*"],
        "@environments/*": ["./src/environments/*"],
        "@shared/*": ["./src/app/shared/*"],
-       "@linea-produccion/*": ["./src/app/modules/linea-produccion/*"]
+       "@linea-produccion/*": ["./src/app/modules/linea-produccion/*"],
+       "@mantenimientos/*": ["./src/app/modules/mantenimientos/*"]
     }
   },
   "angularCompilerOptions": {
