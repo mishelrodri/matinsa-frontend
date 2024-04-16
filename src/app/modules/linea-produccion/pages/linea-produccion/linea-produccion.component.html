@@ -45,9 +45,11 @@
           <td scope="col">
             {{ linea.lineaProduccion === 1 ? "ROPA" : "GORRA" }}
           </td>
-          <td scope="col">{{ linea.fechaIngreso }}</td>
+          <td scope="col">{{ linea.fechaIngreso | fecha }}</td>
           <td scope="col">
-            {{ linea.fechaFinalizacion ? linea.fechaFinalizacion : "-" }}
+            {{
+              linea.fechaFinalizacion ? (linea.fechaFinalizacion | fecha) : "-"
+            }}
           </td>
           <td scope="col">
             <span
@@ -150,10 +152,18 @@
               }}</span
             >
             <span
-              ><span class="fw-semibold">Fecha entrega: </span
+              ><span class="fw-semibold">Cliente: </span
               >{{
                 ordenSeleccionada
                   ? ordenSeleccionada.producto.nombreProducto
+                  : ""
+              }}</span
+            >
+            <span
+              ><span class="fw-semibold">Fecha entrega: </span
+              >{{
+                ordenSeleccionada
+                  ? (ordenSeleccionada.fechaEntrega | fecha)
                   : ""
               }}</span
             >

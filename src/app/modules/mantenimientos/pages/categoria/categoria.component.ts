@@ -72,6 +72,7 @@ export class CategoriaComponent {
                 icon: "success"
               });
               this.cerrar.nativeElement.click();
+              this.p=1;
               this.getPages(0);
           this.isEditar=false;
 
@@ -96,6 +97,7 @@ export class CategoriaComponent {
                 icon: "success"
               });
               this.cerrar.nativeElement.click();
+              this.p=1;
               this.getPages(0);
             },
             error:(resp)=>{
@@ -143,6 +145,7 @@ export class CategoriaComponent {
               icon: "success"
             });
             this.cerrar.nativeElement.click();
+            this.p=1;
             this.getPages(0);
           },
           error:(resp)=>{

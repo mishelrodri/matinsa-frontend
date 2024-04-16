@@ -4,13 +4,14 @@ import { LineaProduccionService } from '@linea-produccion/services/linea-producc
 import { NgSelectConfig, NgSelectModule } from '@ng-select/ng-select';
 import { IOrdenResponse } from '@ordenes/interfaces/IOrden.interface';
 import { AjustarTextoPipe } from '@shared/pipes/ajustar-texto.pipe';
+import { FechaPipe } from '@shared/pipes/fecha.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-linea-produccion',
   standalone: true,
-  imports: [NgxPaginationModule,NgSelectModule,ReactiveFormsModule,FormsModule,AjustarTextoPipe],
+  imports: [NgxPaginationModule,NgSelectModule,ReactiveFormsModule,FormsModule,AjustarTextoPipe,FechaPipe],
   templateUrl: './linea-produccion.component.html',
   styleUrl: './linea-produccion.component.scss'
 })
@@ -85,7 +86,9 @@ export class LineaProduccionComponent {
             icon: "success"
           });
           this.cerrar.nativeElement.click();
+          this.p=1;
           this.getPages(0);
+          this.lineaService.getAllOrdenes();
         },
         error:(resp)=>{
           Swal.fire({
@@ -114,6 +117,7 @@ export class LineaProduccionComponent {
           icon: "success"
         });
         this.segundoCerrar.nativeElement.click();
+        this.p=1;
         this.getPages(0);
         this.lineaService.getAllOrdenes();
       },
